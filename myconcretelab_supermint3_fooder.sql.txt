@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.5.38, for osx10.6 (i386)
 --
--- Host: localhost    Database: supermintFooder
+-- Host: localhost    Database: myconcretelab_supermint3_fooder
 -- ------------------------------------------------------
 -- Server version	5.5.38
 
@@ -1290,7 +1290,7 @@ CREATE TABLE `ConfigStore` (
 
 LOCK TABLES `ConfigStore` WRITE;
 /*!40000 ALTER TABLE `ConfigStore` DISABLE KEYS */;
-INSERT INTO `ConfigStore` VALUES ('MAIN_HELP_LAST_VIEWED','2015-08-27 16:06:05','1440691565',1,0),('NEWSFLOW_LAST_VIEWED','2015-08-27 16:03:25','1441694253',1,0);
+INSERT INTO `ConfigStore` VALUES ('MAIN_HELP_LAST_VIEWED','2015-08-27 16:06:05','1440691565',1,0),('NEWSFLOW_LAST_VIEWED','2015-08-27 16:03:25','1442246245',1,0);
 /*!40000 ALTER TABLE `ConfigStore` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4602,7 +4602,7 @@ CREATE TABLE `SystemDatabaseMigrations` (
 
 LOCK TABLES `SystemDatabaseMigrations` WRITE;
 /*!40000 ALTER TABLE `SystemDatabaseMigrations` DISABLE KEYS */;
-INSERT INTO `SystemDatabaseMigrations` VALUES ('20150713000000');
+INSERT INTO `SystemDatabaseMigrations` VALUES ('20140919000000'),('20140930000000'),('20141017000000'),('20141024000000'),('20141113000000'),('20141219000000'),('20150109000000'),('20150504000000'),('20150515000000'),('20150610000000'),('20150612000000'),('20150615000000'),('20150616000000'),('20150619000000'),('20150622000000'),('20150623000000'),('20150713000000'),('20150731000000');
 /*!40000 ALTER TABLE `SystemDatabaseMigrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4616,7 +4616,9 @@ DROP TABLE IF EXISTS `SystemDatabaseQueryLog`;
 CREATE TABLE `SystemDatabaseQueryLog` (
   `query` text COLLATE utf8_unicode_ci,
   `params` text COLLATE utf8_unicode_ci,
-  `executionMS` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+  `executionMS` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -5296,7 +5298,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'admin','seb@tellthem.be','$2a$12$qrsz9f8ZoV.ggjW.nWBzAuthjd1lKGWqtnvJ7rUXshVOLdeHoMBpW','1',-1,1,'2015-08-27 18:00:44','2015-08-27 18:00:44',0,1441703485,1441694241,'00000000000000000000000000000001',1441117250,4,1,NULL,NULL);
+INSERT INTO `Users` VALUES (1,'admin','seb@tellthem.be','$2a$12$qrsz9f8ZoV.ggjW.nWBzAuthjd1lKGWqtnvJ7rUXshVOLdeHoMBpW','1',-1,1,'2015-08-27 18:00:44','2015-08-27 18:00:44',0,1442246404,1442246241,'00000000000000000000000000000001',1441694241,5,1,NULL,NULL);
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5321,7 +5323,7 @@ CREATE TABLE `WorkflowProgress` (
   KEY `wpCategoryID` (`wpCategoryID`),
   KEY `wfID` (`wfID`),
   KEY `wrID` (`wrID`,`wpID`,`wpIsCompleted`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5398,7 +5400,7 @@ CREATE TABLE `WorkflowRequestObjects` (
   `wrID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `wrObject` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`wrID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6614,6 +6616,10 @@ CREATE TABLE `btPageList` (
   `noResultsMessage` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `displayThumbnail` tinyint(1) DEFAULT '0',
   `truncateChars` int(11) DEFAULT '128',
+  `filterDateOption` varchar(25) COLLATE utf8_unicode_ci DEFAULT 'all' COMMENT '(''all'',''today'',''past'',''future'',''between'')',
+  `filterDateDays` int(10) unsigned NOT NULL DEFAULT '0',
+  `filterDateStart` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `filterDateEnd` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`bID`),
   KEY `ptID` (`ptID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -7058,4 +7064,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-10 21:07:46
+-- Dump completed on 2015-09-15 15:58:28
