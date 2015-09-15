@@ -7,8 +7,8 @@ return array(
             'driver' => 'c5_pdo_mysql',
             'server' => 'localhost',
             'database' => 'databaseName',
-            'username' => 'root',
-            'password' => 'root',
+            'username' => 'Uname',
+            'password' => 'Pwd',
             'charset' => 'utf8'
         )
     )
