@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.5.38, for osx10.6 (i386)
 --
--- Host: localhost    Database: supermintPortofolied
+-- Host: localhost    Database: myconcretelab_supermint3_portfolied
 -- ------------------------------------------------------
 -- Server version	5.5.38
 
@@ -1291,7 +1291,7 @@ CREATE TABLE `ConfigStore` (
 
 LOCK TABLES `ConfigStore` WRITE;
 /*!40000 ALTER TABLE `ConfigStore` DISABLE KEYS */;
-INSERT INTO `ConfigStore` VALUES ('MAIN_HELP_LAST_VIEWED','2015-09-04 13:33:13','1441373593',1,0),('NEWSFLOW_LAST_VIEWED','2015-09-04 13:31:26','1441607048',1,0);
+INSERT INTO `ConfigStore` VALUES ('MAIN_HELP_LAST_VIEWED','2015-09-04 13:33:13','1441373593',1,0),('NEWSFLOW_LAST_VIEWED','2015-09-04 13:31:26','1442248197',1,0);
 /*!40000 ALTER TABLE `ConfigStore` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4076,7 +4076,7 @@ CREATE TABLE `PileContents` (
   KEY `pID` (`pID`,`displayOrder`),
   KEY `itemID` (`itemID`),
   KEY `itemType` (`itemType`,`itemID`,`pID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4601,7 +4601,7 @@ CREATE TABLE `SystemDatabaseMigrations` (
 
 LOCK TABLES `SystemDatabaseMigrations` WRITE;
 /*!40000 ALTER TABLE `SystemDatabaseMigrations` DISABLE KEYS */;
-INSERT INTO `SystemDatabaseMigrations` VALUES ('20150713000000');
+INSERT INTO `SystemDatabaseMigrations` VALUES ('20140919000000'),('20140930000000'),('20141017000000'),('20141024000000'),('20141113000000'),('20141219000000'),('20150109000000'),('20150504000000'),('20150515000000'),('20150610000000'),('20150612000000'),('20150615000000'),('20150616000000'),('20150619000000'),('20150622000000'),('20150623000000'),('20150713000000'),('20150731000000');
 /*!40000 ALTER TABLE `SystemDatabaseMigrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4615,7 +4615,9 @@ DROP TABLE IF EXISTS `SystemDatabaseQueryLog`;
 CREATE TABLE `SystemDatabaseQueryLog` (
   `query` text COLLATE utf8_unicode_ci,
   `params` text COLLATE utf8_unicode_ci,
-  `executionMS` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+  `executionMS` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -5295,7 +5297,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'admin','seb@tellthem.be','$2a$12$MsWKBJHVB3/wDguZMdM6xeilABI4VAVcS.sjQ0jMvIhXeikIrfp9m','1',-1,1,'2015-09-04 15:31:05','2015-09-04 15:31:05',0,1441614744,1441610154,'00000000000000000000000000000001',1441608431,4,1,NULL,NULL);
+INSERT INTO `Users` VALUES (1,'admin','seb@tellthem.be','$2a$12$MsWKBJHVB3/wDguZMdM6xeilABI4VAVcS.sjQ0jMvIhXeikIrfp9m','1',-1,1,'2015-09-04 15:31:05','2015-09-04 15:31:05',0,1442253426,1442248192,'00000000000000000000000000000001',1441610154,5,1,NULL,NULL);
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5320,7 +5322,7 @@ CREATE TABLE `WorkflowProgress` (
   KEY `wpCategoryID` (`wpCategoryID`),
   KEY `wfID` (`wfID`),
   KEY `wrID` (`wrID`,`wpID`,`wpIsCompleted`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5397,7 +5399,7 @@ CREATE TABLE `WorkflowRequestObjects` (
   `wrID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `wrObject` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`wrID`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5902,7 +5904,7 @@ CREATE TABLE `authTypeConcreteCookieMap` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `token` (`token`),
   KEY `uID` (`uID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6619,6 +6621,10 @@ CREATE TABLE `btPageList` (
   `noResultsMessage` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `displayThumbnail` tinyint(1) DEFAULT '0',
   `truncateChars` int(11) DEFAULT '128',
+  `filterDateOption` varchar(25) COLLATE utf8_unicode_ci DEFAULT 'all' COMMENT '(''all'',''today'',''past'',''future'',''between'')',
+  `filterDateDays` int(10) unsigned NOT NULL DEFAULT '0',
+  `filterDateStart` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `filterDateEnd` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`bID`),
   KEY `ptID` (`ptID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -6630,7 +6636,7 @@ CREATE TABLE `btPageList` (
 
 LOCK TABLES `btPageList` WRITE;
 /*!40000 ALTER TABLE `btPageList` DISABLE KEYS */;
-INSERT INTO `btPageList` VALUES (54,2,'display_asc',0,0,0,'','',0,0,'','',0,1,1,1,0,0,0,0,8,0,0,0,'',1,0),(125,0,'display_asc',0,0,0,'','',0,0,'','',0,1,1,1,0,0,0,1,8,0,0,0,'',1,0),(160,0,'display_asc',0,0,0,'','',0,0,'','',0,1,1,0,0,0,0,0,9,0,0,0,'',1,0),(163,0,'display_asc',180,0,0,'','',0,0,'','',0,1,1,0,0,0,0,1,9,0,0,0,'',1,0),(187,0,'display_asc',0,0,0,'','',0,0,'','',0,1,1,0,0,0,0,0,9,0,0,0,'',1,0),(192,0,'display_asc',0,0,0,'','',0,0,'','',0,1,1,0,0,0,0,0,9,0,0,0,'',1,0),(193,0,'display_asc',0,0,0,'','',0,0,'','',0,0,0,0,0,0,0,0,9,0,0,0,'',1,0),(194,0,'display_asc',0,0,0,'','',0,0,'','',0,0,0,0,0,0,0,0,9,0,0,0,'',1,0),(224,0,'display_asc',0,0,0,'','',0,0,'','',0,1,1,0,0,0,0,0,9,0,0,0,'',1,0);
+INSERT INTO `btPageList` VALUES (54,2,'display_asc',0,0,0,'','',0,0,'','',0,1,1,1,0,0,0,0,8,0,0,0,'',1,0,'all',0,NULL,NULL),(125,0,'display_asc',0,0,0,'','',0,0,'','',0,1,1,1,0,0,0,1,8,0,0,0,'',1,0,'all',0,NULL,NULL),(160,0,'display_asc',0,0,0,'','',0,0,'','',0,1,1,0,0,0,0,0,9,0,0,0,'',1,0,'all',0,NULL,NULL),(163,0,'display_asc',180,0,0,'','',0,0,'','',0,1,1,0,0,0,0,1,9,0,0,0,'',1,0,'all',0,NULL,NULL),(187,0,'display_asc',0,0,0,'','',0,0,'','',0,1,1,0,0,0,0,0,9,0,0,0,'',1,0,'all',0,NULL,NULL),(192,0,'display_asc',0,0,0,'','',0,0,'','',0,1,1,0,0,0,0,0,9,0,0,0,'',1,0,'all',0,NULL,NULL),(193,0,'display_asc',0,0,0,'','',0,0,'','',0,0,0,0,0,0,0,0,9,0,0,0,'',1,0,'all',0,NULL,NULL),(194,0,'display_asc',0,0,0,'','',0,0,'','',0,0,0,0,0,0,0,0,9,0,0,0,'',1,0,'all',0,NULL,NULL),(224,0,'display_asc',0,0,0,'','',0,0,'','',0,1,1,0,0,0,0,0,9,0,0,0,'',1,0,'all',0,NULL,NULL);
 /*!40000 ALTER TABLE `btPageList` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7070,4 +7076,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-10 21:07:58
+-- Dump completed on 2015-09-15 15:58:34
